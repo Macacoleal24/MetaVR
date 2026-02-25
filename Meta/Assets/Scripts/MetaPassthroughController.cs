@@ -1,5 +1,5 @@
 using UnityEngine;
-using UnityEngine.XR.ARFoundation; // Si usas ARFoundation
+// using UnityEngine.XR.ARFoundation; // Si usas ARFoundation (No necesario para Meta XR Core SDK)
 using UnityEngine.XR.Management; // Para gestión básica
 
 // Nota: Este script asume que tienes el paquete 'Oculus XR Plugin' instalado.

@@ -1,0 +1,12 @@
+# ninja log v5
+66	239	7941135160822158	FramePacing/CMakeFiles/swappywrapper.dir/UnitySwappyWrapper.cpp.o	a8a7b6ad9779a238
+241	389	7941135162168726	C:/Users/laelm/OneDrive/Documentos/GitHub/MetaVR/LegoMetaMxR/Library/Bee/Android/Prj/IL2CPP/Gradle/unityLibrary/build/intermediates/cxx/RelWithDebInfo/4r6p1y2p/obj/arm64-v8a/libswappywrapper.so	bc8cffd8068c492f
+9	1127	7941135169656627	GameActivity/CMakeFiles/game.dir/UGAConfiguration.cpp.o	56805719ef63d48e
+33	1135	7941135169666721	GameActivity/CMakeFiles/game.dir/UGAEntry.cpp.o	c184d7ebd6c5239d
+24	1137	7941135169720597	GameActivity/CMakeFiles/game.dir/UGAInputKeyEvent.cpp.o	93c2e76d28921734
+49	1183	7941135170237678	GameActivity/CMakeFiles/game.dir/UGAInputMotionEvent.cpp.o	1f518716a4a008bc
+15	1187	7941135170263087	GameActivity/CMakeFiles/game.dir/UGADebug.cpp.o	89b62a4d21dc423e
+57	1303	7941135171459865	GameActivity/CMakeFiles/game.dir/UGASoftKeyboard.cpp.o	4d3e7ca0eb98b612
+41	1411	7941135172541979	GameActivity/CMakeFiles/game.dir/UGAInput.cpp.o	3038cef08e293662
+1	1491	7941135173299687	GameActivity/CMakeFiles/game.dir/UGAApplication.cpp.o	9894ea78b61e6ff5
+1492	1581	7941135174209782	C:/Users/laelm/OneDrive/Documentos/GitHub/MetaVR/LegoMetaMxR/Library/Bee/Android/Prj/IL2CPP/Gradle/unityLibrary/build/intermediates/cxx/RelWithDebInfo/4r6p1y2p/obj/arm64-v8a/libgame.so	8b5730903cfa4cf7

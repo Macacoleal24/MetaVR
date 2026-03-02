@@ -1,0 +1,3 @@
+C:\Users\laelm\OneDrive\Documentos\GitHub\MetaVR\LegoMetaMxR\Library\Bee\Android\Prj\IL2CPP\Gradle\unityLibrary\src\main\cpp\CMakeLists.txt
+C:\Users\laelm\OneDrive\Documentos\GitHub\MetaVR\LegoMetaMxR\Library\Bee\Android\Prj\IL2CPP\Gradle\unityLibrary\src\main\cpp\FramePacing\CMakeLists.txt
+C:\Users\laelm\OneDrive\Documentos\GitHub\MetaVR\LegoMetaMxR\Library\Bee\Android\Prj\IL2CPP\Gradle\unityLibrary\src\main\cpp\GameActivity\CMakeLists.txt

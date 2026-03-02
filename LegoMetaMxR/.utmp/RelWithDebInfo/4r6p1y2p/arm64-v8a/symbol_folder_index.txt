@@ -1,0 +1,1 @@
+C:\Users\laelm\OneDrive\Documentos\GitHub\MetaVR\LegoMetaMxR\Library\Bee\Android\Prj\IL2CPP\Gradle\unityLibrary\build\intermediates\cxx\RelWithDebInfo\4r6p1y2p\obj\arm64-v8a

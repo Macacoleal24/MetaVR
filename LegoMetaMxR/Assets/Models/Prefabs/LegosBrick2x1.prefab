@@ -223,6 +223,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: ae39f551179c3504fafbe8e29552f825, type: 3}
       insertIndex: -1
       addedObject: {fileID: -1014952891707187866}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: ae39f551179c3504fafbe8e29552f825, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 3052151874000488150}
   m_SourcePrefab: {fileID: 100100000, guid: ae39f551179c3504fafbe8e29552f825, type: 3}
 --- !u!4 &8629110431596613441 stripped
 Transform:
@@ -369,3 +372,17 @@ MonoBehaviour:
   _movementProvider: {fileID: 0}
   _handAligment: 1
   _handGrabPoses: []
+--- !u!114 &3052151874000488150
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8974287141146154491}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2f7bc061a8496cc4aaf2f6c560484a1d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::destroyLego
+  trashTag: Trash
+  matchByName: 1

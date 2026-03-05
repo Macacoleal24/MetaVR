@@ -226,6 +226,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: ae39f551179c3504fafbe8e29552f825, type: 3}
       insertIndex: -1
       addedObject: {fileID: 3052151874000488150}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: ae39f551179c3504fafbe8e29552f825, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 2864608991003688796}
   m_SourcePrefab: {fileID: 100100000, guid: ae39f551179c3504fafbe8e29552f825, type: 3}
 --- !u!4 &8629110431596613441 stripped
 Transform:
@@ -386,3 +389,21 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::destroyLego
   trashTag: Trash
   matchByName: 1
+--- !u!114 &2864608991003688796
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8974287141146154491}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eb3888ba02c8b7b419df36e7c1d81c78, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Snapsystem
+  topSnapPoints:
+  - {fileID: 0}
+  bottomSnapPoints:
+  - {fileID: 0}
+  snapThreshold: 0.5
+  autoSnapInUpdate: 0

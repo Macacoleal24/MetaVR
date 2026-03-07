@@ -84,6 +84,38 @@ PrefabInstance:
       propertyPath: 'bottomSnapPoints.Array.data[7]'
       value: 
       objectReference: {fileID: 5433476487707778953}
+    - target: {fileID: 520968778047214246, guid: 338c4f3d7323dda45a2ff5a0a58239bb, type: 3}
+      propertyPath: _maxSelectingInteractors
+      value: -1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1321184511689980891, guid: 338c4f3d7323dda45a2ff5a0a58239bb, type: 3}
+      propertyPath: _maxSelectingInteractors
+      value: -1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2422412796434272339, guid: 338c4f3d7323dda45a2ff5a0a58239bb, type: 3}
+      propertyPath: m_UseGravity
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2676345778951390076, guid: 338c4f3d7323dda45a2ff5a0a58239bb, type: 3}
+      propertyPath: m_Size.z
+      value: 0.012037563
+      objectReference: {fileID: 0}
+    - target: {fileID: 2676345778951390076, guid: 338c4f3d7323dda45a2ff5a0a58239bb, type: 3}
+      propertyPath: m_Center.y
+      value: 0.07181653
+      objectReference: {fileID: 0}
+    - target: {fileID: 2676345778951390076, guid: 338c4f3d7323dda45a2ff5a0a58239bb, type: 3}
+      propertyPath: m_Center.z
+      value: 0.006018823
+      objectReference: {fileID: 0}
+    - target: {fileID: 3762750020557440459, guid: 338c4f3d7323dda45a2ff5a0a58239bb, type: 3}
+      propertyPath: _maxSelectingInteractors
+      value: -1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4003452769885378554, guid: 338c4f3d7323dda45a2ff5a0a58239bb, type: 3}
+      propertyPath: _maxSelectingInteractors
+      value: -1
+      objectReference: {fileID: 0}
     - target: {fileID: 4030384536496876440, guid: 338c4f3d7323dda45a2ff5a0a58239bb, type: 3}
       propertyPath: m_LocalPosition.x
       value: -45.10066
@@ -128,7 +160,24 @@ PrefabInstance:
       propertyPath: m_Name
       value: LegosBrick4x2 Variant
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    - target: {fileID: 4787527227507129691, guid: 338c4f3d7323dda45a2ff5a0a58239bb, type: 3}
+      propertyPath: _maxSelectingInteractors
+      value: -1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6991725107577058490, guid: 338c4f3d7323dda45a2ff5a0a58239bb, type: 3}
+      propertyPath: _maxSelectingInteractors
+      value: -1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7828173504118172940, guid: 338c4f3d7323dda45a2ff5a0a58239bb, type: 3}
+      propertyPath: _maxSelectingInteractors
+      value: -1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8720419274156188990, guid: 338c4f3d7323dda45a2ff5a0a58239bb, type: 3}
+      propertyPath: _maxSelectingInteractors
+      value: -1
+      objectReference: {fileID: 0}
+    m_RemovedComponents:
+    - {fileID: 9206998623057829215, guid: 338c4f3d7323dda45a2ff5a0a58239bb, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []

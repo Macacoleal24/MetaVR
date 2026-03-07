@@ -8,6 +8,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: -5753290433719926438, guid: 930cab6d4a5f7094b94f0e259fb0cdb5, type: 3}
+      propertyPath: m_UseGravity
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: -1594014907593374557, guid: 930cab6d4a5f7094b94f0e259fb0cdb5, type: 3}
       propertyPath: autoSnapInUpdate
       value: 1

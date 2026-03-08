@@ -72,6 +72,10 @@ public class LegoSnapTests
         yield return new WaitForFixedUpdate();
         yield return null;
 
+        // 4.5. Simulate Release (TrySnap) to trigger PerformSnap
+        var trySnapMethod = typeof(SnapInteractor).GetMethod("TrySnap", BindingFlags.NonPublic | BindingFlags.Instance);
+        trySnapMethod.Invoke(interactor, null);
+
         // 5. Assert
         // Should ignore Top (incompatible) and find Bottom (compatible) if within range
         // Or if Bottom is too far, find nothing.
@@ -80,6 +84,13 @@ public class LegoSnapTests
         Assert.IsNotNull(interactor.BestTargetPoint, "Should find a valid snap point");
         Assert.AreEqual("Connect_Bottom", interactor.BestTargetPoint.name, "Should pick Bottom point due to polarity");
         Assert.AreNotEqual("Connect_Top", interactor.BestTargetPoint.name, "Should NOT pick Top point (incompatible)");
+
+        // Object should be snapped to targetBottom.position relative to targetObj (parent)
+        // targetBottom.localPosition is (0, -0.04f, 0)
+        // Since handPoint is at (0,0,0) of handObj, handObj should align exactly with targetBottom
+        Assert.AreEqual(new Vector3(0, -0.04f, 0), handObj.transform.localPosition, "Object should be snapped to local position of the target point");
+        Assert.AreEqual(targetObj.transform, handObj.transform.parent, "Object should become child of the target interactable");
+        Assert.IsTrue(handObj.GetComponent<Rigidbody>().isKinematic, "Object should be kinematic after snap");
     }
 
     [UnityTest]
@@ -109,6 +120,7 @@ public class LegoSnapTests
         yield return null;
 
         // 5. Assert
-        Assert.IsNull(interactor.BestTargetPoint, "Should NOT find any snap point if only incompatible ones exist");
-    }
+            Assert.IsNull(interactor.BestTargetPoint, "Should NOT find any snap point if only incompatible ones exist");
+            Assert.AreNotEqual(targetObj.transform, handObj.transform.parent, "Should NOT parent if snap failed");
+        }
 }

@@ -64,6 +64,9 @@ namespace LegoMetaMxR
                 // Al agarrar, desactivar kinematic para física (si estaba en snap)
                 _rigidbody.isKinematic = false;
                 
+                // Desvincular (Unparent) del objeto padre para permitir separación
+                transform.SetParent(null);
+                
                 // Limpiar hover previo si existe
                 if (_currentHoverInteractable != null)
                 {
@@ -185,9 +188,9 @@ namespace LegoMetaMxR
 
         private void PerformSnap(Transform myPoint, Transform targetPoint)
         {
-            _rigidbody.isKinematic = true;
             _rigidbody.linearVelocity = Vector3.zero;
             _rigidbody.angularVelocity = Vector3.zero;
+            _rigidbody.isKinematic = true;
 
             // Calcular offset para alinear myPoint con targetPoint
             // Queremos que myPoint.position == targetPoint.position
@@ -196,7 +199,15 @@ namespace LegoMetaMxR
             Vector3 offset = transform.position - myPoint.position;
             transform.position = targetPoint.position + offset;
 
-            // 2. Alinear rotación (Opcional por ahora, mantenemos rotación del usuario)
+            // 2. Establecer jerarquía (Parenting) para que se muevan juntos
+            // El objeto actual se vuelve hijo del objeto al que se conectó
+            var targetInteractable = targetPoint.GetComponentInParent<SnapInteractable>();
+            if (targetInteractable != null)
+            {
+                transform.SetParent(targetInteractable.transform);
+            }
+
+            // 3. Alinear rotación (Opcional por ahora, mantenemos rotación del usuario)
             
             Debug.Log($"Snapped {name} (via {myPoint.name}) to {targetPoint.parent.name} (via {targetPoint.name})");
             

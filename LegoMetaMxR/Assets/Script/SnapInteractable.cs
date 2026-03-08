@@ -13,6 +13,11 @@ namespace LegoMetaMxR
 
         public bool IsOccupied { get; private set; }
 
+        // Eventos para el sistema de visuales
+        public System.Action<SnapInteractor> OnHoverEnter;
+        public System.Action<SnapInteractor> OnHoverExit;
+        public System.Action<SnapInteractor> OnSnap;
+
         private void Awake()
         {
             // Auto-detectar puntos de conexión si la lista está vacía
@@ -28,15 +33,16 @@ namespace LegoMetaMxR
             }
         }
 
-        public Transform GetClosestSnapPoint(Vector3 position)
+        public Transform GetClosestSnapPoint(Vector3 position, float maxDistance = -1f)
         {
             Transform closest = null;
             float minDistance = float.MaxValue;
+            float checkRadius = (maxDistance < 0) ? snapRadius : maxDistance;
 
             foreach (var point in snapPoints)
             {
                 float dist = Vector3.Distance(point.position, position);
-                if (dist < minDistance && dist <= snapRadius)
+                if (dist < minDistance && dist <= checkRadius)
                 {
                     minDistance = dist;
                     closest = point;

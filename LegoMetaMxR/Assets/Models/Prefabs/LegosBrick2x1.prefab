@@ -320,6 +320,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: ae39f551179c3504fafbe8e29552f825, type: 3}
       insertIndex: -1
       addedObject: {fileID: 8189071633743244736}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: ae39f551179c3504fafbe8e29552f825, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 6625402048769700838}
   m_SourcePrefab: {fileID: 100100000, guid: ae39f551179c3504fafbe8e29552f825, type: 3}
 --- !u!4 &8629110431596613441 stripped
 Transform:
@@ -512,3 +515,17 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::LegoMetaMxR.SnapInteractor
   mainSnapPoint: {fileID: 8323347007951824339}
   searchRadius: 0.15
+--- !u!114 &6625402048769700838
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8974287141146154491}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1397d30d2aecb5a4d9d645617f571f76, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::LegoMetaMxR.SnapInteractableVisuals
+  snapInteractable: {fileID: 952918178078097081}
+  hoverMaterial: {fileID: 2100000, guid: 684c61014582017429ad8ecb67114979, type: 2}

@@ -13,6 +13,26 @@ namespace LegoMetaMxR.Editor
             string[] guids = AssetDatabase.FindAssets("t:Prefab", new[] { "Assets/Models/Prefabs" });
             int count = 0;
 
+            // Crear/Cargar material Ghost
+            Material ghostMat = AssetDatabase.LoadAssetAtPath<Material>("Assets/Materials/GhostHover.mat");
+            if (ghostMat == null)
+            {
+                ghostMat = new Material(Shader.Find("Standard"));
+                ghostMat.color = new Color(0.0f, 1.0f, 0.0f, 0.4f); // Verde transparente
+                // Configurar para transparencia (Standard Shader)
+                ghostMat.SetFloat("_Mode", 3);
+                ghostMat.SetInt("_SrcBlend", (int)UnityEngine.Rendering.BlendMode.SrcAlpha);
+                ghostMat.SetInt("_DstBlend", (int)UnityEngine.Rendering.BlendMode.OneMinusSrcAlpha);
+                ghostMat.SetInt("_ZWrite", 0);
+                ghostMat.DisableKeyword("_ALPHATEST_ON");
+                ghostMat.EnableKeyword("_ALPHABLEND_ON");
+                ghostMat.DisableKeyword("_ALPHAPREMULTIPLY_ON");
+                ghostMat.renderQueue = 3000;
+                
+                AssetDatabase.CreateAsset(ghostMat, "Assets/Materials/GhostHover.mat");
+                Debug.Log("Created GhostHover material");
+            }
+
             foreach (string guid in guids)
             {
                 string path = AssetDatabase.GUIDToAssetPath(guid);
@@ -66,6 +86,32 @@ namespace LegoMetaMxR.Editor
                             }
                         }
                     }
+
+                    // 3. Añadir SnapInteractableVisuals (NUEVO)
+                    SnapInteractableVisuals visuals = prefabContents.GetComponent<SnapInteractableVisuals>();
+                    if (visuals == null)
+                    {
+                        visuals = prefabContents.AddComponent<SnapInteractableVisuals>();
+                        modified = true;
+                    }
+
+                    // Configurar campos privados de SnapInteractableVisuals usando SerializedObject
+                    SerializedObject soVisuals = new SerializedObject(visuals);
+                    SerializedProperty propInteractable = soVisuals.FindProperty("snapInteractable");
+                    SerializedProperty propMaterial = soVisuals.FindProperty("hoverMaterial");
+
+                    if (propInteractable.objectReferenceValue == null)
+                    {
+                        propInteractable.objectReferenceValue = interactable;
+                        modified = true;
+                    }
+                    if (propMaterial.objectReferenceValue == null)
+                    {
+                        propMaterial.objectReferenceValue = ghostMat;
+                        modified = true;
+                    }
+                    soVisuals.ApplyModifiedProperties();
+
 
                     // Asegurar Rigidbody (necesario para interacciones físicas)
                     if (prefabContents.GetComponent<Rigidbody>() == null)

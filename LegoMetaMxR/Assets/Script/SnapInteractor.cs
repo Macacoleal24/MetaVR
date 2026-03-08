@@ -1,0 +1,140 @@
+using UnityEngine;
+using Oculus.Interaction;
+
+namespace LegoMetaMxR
+{
+    [RequireComponent(typeof(Grabbable))]
+    [RequireComponent(typeof(Rigidbody))]
+    public class SnapInteractor : MonoBehaviour
+    {
+        [Tooltip("Punto de conexión principal de este objeto (ej. Connect_Bottom)")]
+        public Transform mainSnapPoint;
+        
+        [Tooltip("Radio de búsqueda de otros interactables")]
+        public float searchRadius = 0.15f;
+
+        private Grabbable _grabbable;
+        private Rigidbody _rigidbody;
+        private bool _isSnapped = false;
+        private SnapInteractable _currentSnapTarget;
+        private Transform _targetSnapPoint;
+
+        private void Awake()
+        {
+            _grabbable = GetComponent<Grabbable>();
+            _rigidbody = GetComponent<Rigidbody>();
+
+            // Intentar encontrar el punto de conexión inferior por defecto
+            if (mainSnapPoint == null)
+            {
+                Transform bottom = transform.Find("Connect_Bottom");
+                if (bottom != null) mainSnapPoint = bottom;
+                else mainSnapPoint = transform; // Fallback
+            }
+        }
+
+        private void OnEnable()
+        {
+            if (_grabbable != null)
+            {
+                _grabbable.WhenPointerEventRaised += HandlePointerEvent;
+            }
+        }
+
+        private void OnDisable()
+        {
+            if (_grabbable != null)
+            {
+                _grabbable.WhenPointerEventRaised -= HandlePointerEvent;
+            }
+        }
+
+        private void HandlePointerEvent(PointerEvent evt)
+        {
+            if (evt.Type == PointerEventType.Select)
+            {
+                // Al agarrar, desactivar kinematic para física (si estaba en snap)
+                _isSnapped = false;
+                _rigidbody.isKinematic = false;
+            }
+            else if (evt.Type == PointerEventType.Unselect)
+            {
+                // Al soltar, intentar hacer snap
+                TrySnap();
+            }
+        }
+
+        private void Update()
+        {
+            // Opcional: Visualización del "Ghost" o highlight mientras se arrastra
+            // Esto requeriría lógica adicional para mostrar dónde caería
+        }
+
+        private void TrySnap()
+        {
+            if (mainSnapPoint == null) return;
+
+            // Buscar interactables cercanos
+            Collider[] colliders = Physics.OverlapSphere(mainSnapPoint.position, searchRadius);
+            Transform bestMatch = null;
+            float minDst = float.MaxValue;
+
+            foreach (var col in colliders)
+            {
+                // Ignorar colisión con uno mismo
+                if (col.transform.root == transform.root) continue;
+
+                var interactable = col.GetComponentInParent<SnapInteractable>();
+                if (interactable != null)
+                {
+                    Transform targetPoint = interactable.GetClosestSnapPoint(mainSnapPoint.position);
+                    if (targetPoint != null)
+                    {
+                        float dst = Vector3.Distance(mainSnapPoint.position, targetPoint.position);
+                        if (dst < minDst)
+                        {
+                            minDst = dst;
+                            bestMatch = targetPoint;
+                            _currentSnapTarget = interactable;
+                        }
+                    }
+                }
+            }
+
+            if (bestMatch != null)
+            {
+                PerformSnap(bestMatch);
+            }
+        }
+
+        private void PerformSnap(Transform targetPoint)
+        {
+            _isSnapped = true;
+            _rigidbody.isKinematic = true;
+            _rigidbody.linearVelocity = Vector3.zero;
+            _rigidbody.angularVelocity = Vector3.zero;
+
+            // Calcular offset para alinear mainSnapPoint con targetPoint
+            // Queremos que mainSnapPoint.position == targetPoint.position
+            // Y alinear rotaciones (esto es simplificado, LEGO requiere rotaciones de 90 grados)
+            
+            // 1. Alinear posición
+            Vector3 offset = transform.position - mainSnapPoint.position;
+            transform.position = targetPoint.position + offset;
+
+            // 2. Alinear rotación (Snap a 90 grados más cercano relativo al target)
+            // Por ahora, simple snap de posición
+            
+            Debug.Log($"Snapped {name} to {targetPoint.parent.name}");
+        }
+
+        private void OnDrawGizmos()
+        {
+            if (mainSnapPoint != null)
+            {
+                Gizmos.color = Color.green;
+                Gizmos.DrawWireSphere(mainSnapPoint.position, searchRadius);
+            }
+        }
+    }
+}

@@ -1711,63 +1711,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1545313804}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1001 &168421182
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    serializedVersion: 3
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 4030384536496876440, guid: 338c4f3d7323dda45a2ff5a0a58239bb, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: -0.803
-      objectReference: {fileID: 0}
-    - target: {fileID: 4030384536496876440, guid: 338c4f3d7323dda45a2ff5a0a58239bb, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0.855
-      objectReference: {fileID: 0}
-    - target: {fileID: 4030384536496876440, guid: 338c4f3d7323dda45a2ff5a0a58239bb, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0.1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4030384536496876440, guid: 338c4f3d7323dda45a2ff5a0a58239bb, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 0.7071067
-      objectReference: {fileID: 0}
-    - target: {fileID: 4030384536496876440, guid: 338c4f3d7323dda45a2ff5a0a58239bb, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: -0.7071068
-      objectReference: {fileID: 0}
-    - target: {fileID: 4030384536496876440, guid: 338c4f3d7323dda45a2ff5a0a58239bb, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4030384536496876440, guid: 338c4f3d7323dda45a2ff5a0a58239bb, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4030384536496876440, guid: 338c4f3d7323dda45a2ff5a0a58239bb, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4030384536496876440, guid: 338c4f3d7323dda45a2ff5a0a58239bb, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4030384536496876440, guid: 338c4f3d7323dda45a2ff5a0a58239bb, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4369931781159252258, guid: 338c4f3d7323dda45a2ff5a0a58239bb, type: 3}
-      propertyPath: m_Name
-      value: LegosBrick4x2 (2)
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-    m_RemovedGameObjects: []
-    m_AddedGameObjects: []
-    m_AddedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: 338c4f3d7323dda45a2ff5a0a58239bb, type: 3}
 --- !u!1 &168724850
 GameObject:
   m_ObjectHideFlags: 0
@@ -4862,63 +4805,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _facing: 0
   _doubleSided: 0
---- !u!1001 &513539522
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    serializedVersion: 3
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 4030384536496876440, guid: 68990b4bab5bc3448bb4565f499925ae, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 0.281
-      objectReference: {fileID: 0}
-    - target: {fileID: 4030384536496876440, guid: 68990b4bab5bc3448bb4565f499925ae, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0.95762366
-      objectReference: {fileID: 0}
-    - target: {fileID: 4030384536496876440, guid: 68990b4bab5bc3448bb4565f499925ae, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0.16150574
-      objectReference: {fileID: 0}
-    - target: {fileID: 4030384536496876440, guid: 68990b4bab5bc3448bb4565f499925ae, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 0.7071067
-      objectReference: {fileID: 0}
-    - target: {fileID: 4030384536496876440, guid: 68990b4bab5bc3448bb4565f499925ae, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: -0.7071068
-      objectReference: {fileID: 0}
-    - target: {fileID: 4030384536496876440, guid: 68990b4bab5bc3448bb4565f499925ae, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4030384536496876440, guid: 68990b4bab5bc3448bb4565f499925ae, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4030384536496876440, guid: 68990b4bab5bc3448bb4565f499925ae, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4030384536496876440, guid: 68990b4bab5bc3448bb4565f499925ae, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4030384536496876440, guid: 68990b4bab5bc3448bb4565f499925ae, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4369931781159252258, guid: 68990b4bab5bc3448bb4565f499925ae, type: 3}
-      propertyPath: m_Name
-      value: LegosBrick4x2 1 (1)
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-    m_RemovedGameObjects: []
-    m_AddedGameObjects: []
-    m_AddedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: 68990b4bab5bc3448bb4565f499925ae, type: 3}
 --- !u!1 &528338674
 GameObject:
   m_ObjectHideFlags: 0
@@ -11813,7 +11699,7 @@ MonoBehaviour:
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 4
+          m_IntArgument: 5
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
@@ -16220,63 +16106,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 959845146}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1001 &1831381935
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    serializedVersion: 3
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 4030384536496876440, guid: 338c4f3d7323dda45a2ff5a0a58239bb, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: -0.539
-      objectReference: {fileID: 0}
-    - target: {fileID: 4030384536496876440, guid: 338c4f3d7323dda45a2ff5a0a58239bb, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0.855
-      objectReference: {fileID: 0}
-    - target: {fileID: 4030384536496876440, guid: 338c4f3d7323dda45a2ff5a0a58239bb, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0.387
-      objectReference: {fileID: 0}
-    - target: {fileID: 4030384536496876440, guid: 338c4f3d7323dda45a2ff5a0a58239bb, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 0.7071067
-      objectReference: {fileID: 0}
-    - target: {fileID: 4030384536496876440, guid: 338c4f3d7323dda45a2ff5a0a58239bb, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: -0.7071068
-      objectReference: {fileID: 0}
-    - target: {fileID: 4030384536496876440, guid: 338c4f3d7323dda45a2ff5a0a58239bb, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4030384536496876440, guid: 338c4f3d7323dda45a2ff5a0a58239bb, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4030384536496876440, guid: 338c4f3d7323dda45a2ff5a0a58239bb, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4030384536496876440, guid: 338c4f3d7323dda45a2ff5a0a58239bb, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4030384536496876440, guid: 338c4f3d7323dda45a2ff5a0a58239bb, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4369931781159252258, guid: 338c4f3d7323dda45a2ff5a0a58239bb, type: 3}
-      propertyPath: m_Name
-      value: LegosBrick4x2 (1)
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-    m_RemovedGameObjects: []
-    m_AddedGameObjects: []
-    m_AddedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: 338c4f3d7323dda45a2ff5a0a58239bb, type: 3}
 --- !u!1 &1834760640
 GameObject:
   m_ObjectHideFlags: 0
@@ -18003,63 +17832,6 @@ Transform:
   - {fileID: 6738450968773947394}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1001 &2000286989
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    serializedVersion: 3
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 4030384536496876440, guid: 68990b4bab5bc3448bb4565f499925ae, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 0.0020346886
-      objectReference: {fileID: 0}
-    - target: {fileID: 4030384536496876440, guid: 68990b4bab5bc3448bb4565f499925ae, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0.95762366
-      objectReference: {fileID: 0}
-    - target: {fileID: 4030384536496876440, guid: 68990b4bab5bc3448bb4565f499925ae, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0.16150574
-      objectReference: {fileID: 0}
-    - target: {fileID: 4030384536496876440, guid: 68990b4bab5bc3448bb4565f499925ae, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 0.7071067
-      objectReference: {fileID: 0}
-    - target: {fileID: 4030384536496876440, guid: 68990b4bab5bc3448bb4565f499925ae, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: -0.7071068
-      objectReference: {fileID: 0}
-    - target: {fileID: 4030384536496876440, guid: 68990b4bab5bc3448bb4565f499925ae, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4030384536496876440, guid: 68990b4bab5bc3448bb4565f499925ae, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4030384536496876440, guid: 68990b4bab5bc3448bb4565f499925ae, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4030384536496876440, guid: 68990b4bab5bc3448bb4565f499925ae, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4030384536496876440, guid: 68990b4bab5bc3448bb4565f499925ae, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4369931781159252258, guid: 68990b4bab5bc3448bb4565f499925ae, type: 3}
-      propertyPath: m_Name
-      value: LegosBrick4x2 1
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-    m_RemovedGameObjects: []
-    m_AddedGameObjects: []
-    m_AddedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: 68990b4bab5bc3448bb4565f499925ae, type: 3}
 --- !u!1 &2005478917
 GameObject:
   m_ObjectHideFlags: 0
@@ -20200,7 +19972,3 @@ SceneRoots:
   - {fileID: 3138209821123796924}
   - {fileID: 8554949334547696537}
   - {fileID: 1709476927555726767}
-  - {fileID: 2000286989}
-  - {fileID: 513539522}
-  - {fileID: 1831381935}
-  - {fileID: 168421182}

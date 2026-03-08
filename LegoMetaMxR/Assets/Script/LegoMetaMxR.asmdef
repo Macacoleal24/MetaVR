@@ -1,0 +1,19 @@
+{
+    "name": "LegoMetaMxR",
+    "rootNamespace": "LegoMetaMxR",
+    "references": [
+        "Oculus.Interaction",
+        "Oculus.VR",
+        "Unity.TextMeshPro",
+        "UnityEngine.UI"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}

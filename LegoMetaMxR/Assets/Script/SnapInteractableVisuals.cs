@@ -74,17 +74,15 @@ namespace LegoMetaMxR
         {
             if (currentInteractor != null && currentGhostObject != null)
             {
-                // Encontrar el punto de snap más cercano sin límite estricto de distancia (para visualización fluida)
-                // Usamos un radio generoso para asegurar que siempre haya un target mientras estemos en hover
-                Transform targetPoint = snapInteractable.GetClosestSnapPoint(currentInteractor.mainSnapPoint.position, 10f);
-                
-                if (targetPoint != null)
+                // Usar los puntos calculados por el interactor para una visualización precisa
+                Transform myPoint = currentInteractor.BestLocalPoint;
+                Transform targetPoint = currentInteractor.BestTargetPoint;
+
+                // Si por alguna razón el interactor no tiene puntos válidos (ej. acaba de salir de rango pero no hemos procesado exit), usar fallback
+                if (myPoint != null && targetPoint != null)
                 {
-                    // Calcular la posición donde quedaría el objeto si hiciéramos snap ahora
-                    // Lógica idéntica a SnapInteractor.PerformSnap:
-                    // transform.position = targetPoint.position + (transform.position - mainSnapPoint.position)
-                    
-                    Vector3 offset = currentInteractor.transform.position - currentInteractor.mainSnapPoint.position;
+                    // Calcular offset para alinear myPoint con targetPoint
+                    Vector3 offset = currentInteractor.transform.position - myPoint.position;
                     currentGhostObject.transform.position = targetPoint.position + offset;
                     
                     // Mantener la rotación del interactor para el ghost

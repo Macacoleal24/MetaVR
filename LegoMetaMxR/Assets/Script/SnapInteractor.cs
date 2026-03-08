@@ -1,4 +1,5 @@
 using UnityEngine;
+using System.Collections.Generic;
 using Oculus.Interaction;
 
 namespace LegoMetaMxR
@@ -11,20 +12,24 @@ namespace LegoMetaMxR
         public Transform mainSnapPoint;
         
         [Tooltip("Radio de búsqueda de otros interactables")]
-        public float searchRadius = 0.15f;
+        public float searchRadius = 0.05f;
+
+        // Nuevas propiedades públicas para exponer el mejor punto de snap calculado
+        public Transform BestLocalPoint { get; private set; }
+        public Transform BestTargetPoint { get; private set; }
 
         private Grabbable _grabbable;
         private Rigidbody _rigidbody;
-        private bool _isSnapped = false;
         private bool _isGrabbed = false;
         private SnapInteractable _currentSnapTarget;
         private SnapInteractable _currentHoverInteractable;
-        private Transform _targetSnapPoint;
+        private SnapInteractable _selfInteractable; // Referencia al interactable propio
 
         private void Awake()
         {
             _grabbable = GetComponent<Grabbable>();
             _rigidbody = GetComponent<Rigidbody>();
+            _selfInteractable = GetComponent<SnapInteractable>();
 
             // Intentar encontrar el punto de conexión inferior por defecto
             if (mainSnapPoint == null)
@@ -57,7 +62,6 @@ namespace LegoMetaMxR
             {
                 _isGrabbed = true;
                 // Al agarrar, desactivar kinematic para física (si estaba en snap)
-                _isSnapped = false;
                 _rigidbody.isKinematic = false;
                 
                 // Limpiar hover previo si existe
@@ -97,10 +101,13 @@ namespace LegoMetaMxR
             // Histéresis: si ya tenemos un hover, usar un radio mayor para evitar flickering
             float currentSearchRadius = (_currentHoverInteractable != null) ? searchRadius * 1.2f : searchRadius;
 
-            // Buscar interactables cercanos para Hover
+            // Buscar interactables cercanos (Broad Phase)
             Collider[] colliders = Physics.OverlapSphere(mainSnapPoint.position, currentSearchRadius);
+            
             SnapInteractable bestInteractable = null;
             float minDst = float.MaxValue;
+            Transform bestLocal = null;
+            Transform bestTarget = null;
 
             foreach (var col in colliders)
             {
@@ -109,20 +116,44 @@ namespace LegoMetaMxR
                 var interactable = col.GetComponentInParent<SnapInteractable>();
                 if (interactable != null)
                 {
-                    // Buscar punto de snap con el radio de búsqueda actual (que puede ser mayor que el snapRadius interno)
-                    Transform targetPoint = interactable.GetClosestSnapPoint(mainSnapPoint.position, currentSearchRadius);
-                    
-                    if (targetPoint != null)
+                    // Narrow Phase: Comparar todos los puntos locales contra todos los puntos del target
+                    List<Transform> myPoints = new List<Transform>();
+                    if (_selfInteractable != null && _selfInteractable.snapPoints.Count > 0)
                     {
-                        float dst = Vector3.Distance(mainSnapPoint.position, targetPoint.position);
-                        if (dst < minDst)
+                        myPoints.AddRange(_selfInteractable.snapPoints);
+                    }
+                    else
+                    {
+                        myPoints.Add(mainSnapPoint);
+                    }
+
+                    foreach (Transform myPoint in myPoints)
+                    {
+                        // Iterar manualmente sobre los puntos del target para verificar compatibilidad (polaridad)
+                        foreach (Transform targetPoint in interactable.snapPoints)
                         {
-                            minDst = dst;
-                            bestInteractable = interactable;
+                            // Verificar distancia dentro del radio
+                            float dst = Vector3.Distance(myPoint.position, targetPoint.position);
+                            if (dst > currentSearchRadius) continue;
+
+                            // Verificar compatibilidad (Top con Bottom)
+                            if (!IsCompatible(myPoint.name, targetPoint.name)) continue;
+
+                            if (dst < minDst)
+                            {
+                                minDst = dst;
+                                bestInteractable = interactable;
+                                bestLocal = myPoint;
+                                bestTarget = targetPoint;
+                            }
                         }
                     }
                 }
             }
+
+            // Actualizar propiedades públicas
+            BestLocalPoint = bestLocal;
+            BestTargetPoint = bestTarget;
 
             // Gestionar eventos de Hover
             if (bestInteractable != _currentHoverInteractable)
@@ -145,58 +176,29 @@ namespace LegoMetaMxR
         {
             if (mainSnapPoint == null) return;
 
-            // Buscar interactables cercanos
-            Collider[] colliders = Physics.OverlapSphere(mainSnapPoint.position, searchRadius);
-            Transform bestMatch = null;
-            float minDst = float.MaxValue;
-
-            foreach (var col in colliders)
+            // Reutilizamos la lógica de UpdateHoverLogic que ya calculó el mejor punto
+            if (_currentHoverInteractable != null && BestLocalPoint != null && BestTargetPoint != null)
             {
-                // Ignorar colisión con uno mismo
-                if (col.transform.root == transform.root) continue;
-
-                var interactable = col.GetComponentInParent<SnapInteractable>();
-                if (interactable != null)
-                {
-                    Transform targetPoint = interactable.GetClosestSnapPoint(mainSnapPoint.position);
-                    if (targetPoint != null)
-                    {
-                        float dst = Vector3.Distance(mainSnapPoint.position, targetPoint.position);
-                        if (dst < minDst)
-                        {
-                            minDst = dst;
-                            bestMatch = targetPoint;
-                            _currentSnapTarget = interactable;
-                        }
-                    }
-                }
-            }
-
-            if (bestMatch != null)
-            {
-                PerformSnap(bestMatch);
+                PerformSnap(BestLocalPoint, BestTargetPoint);
             }
         }
 
-        private void PerformSnap(Transform targetPoint)
+        private void PerformSnap(Transform myPoint, Transform targetPoint)
         {
-            _isSnapped = true;
             _rigidbody.isKinematic = true;
             _rigidbody.linearVelocity = Vector3.zero;
             _rigidbody.angularVelocity = Vector3.zero;
 
-            // Calcular offset para alinear mainSnapPoint con targetPoint
-            // Queremos que mainSnapPoint.position == targetPoint.position
-            // Y alinear rotaciones (esto es simplificado, LEGO requiere rotaciones de 90 grados)
+            // Calcular offset para alinear myPoint con targetPoint
+            // Queremos que myPoint.position == targetPoint.position
             
             // 1. Alinear posición
-            Vector3 offset = transform.position - mainSnapPoint.position;
+            Vector3 offset = transform.position - myPoint.position;
             transform.position = targetPoint.position + offset;
 
-            // 2. Alinear rotación (Snap a 90 grados más cercano relativo al target)
-            // Por ahora, simple snap de posición
+            // 2. Alinear rotación (Opcional por ahora, mantenemos rotación del usuario)
             
-            Debug.Log($"Snapped {name} to {targetPoint.parent.name}");
+            Debug.Log($"Snapped {name} (via {myPoint.name}) to {targetPoint.parent.name} (via {targetPoint.name})");
             
             // Notificar evento de Snap
             var interactable = targetPoint.GetComponentInParent<SnapInteractable>();
@@ -204,6 +206,24 @@ namespace LegoMetaMxR
             {
                 interactable.OnSnap?.Invoke(this);
             }
+        }
+
+        private bool IsCompatible(string nameA, string nameB)
+        {
+            bool aIsTop = nameA.Contains("Top");
+            bool aIsBottom = nameA.Contains("Bottom");
+            bool bIsTop = nameB.Contains("Top");
+            bool bIsBottom = nameB.Contains("Bottom");
+
+            // Solo permitir conexiones Top-Bottom o Bottom-Top
+            if (aIsTop && bIsBottom) return true;
+            if (aIsBottom && bIsTop) return true;
+            
+            // Si alguno de los dos no tiene etiquetas estándar, asumimos que no es un bloque Lego estándar
+            // y permitimos la conexión por defecto (o podemos ser estrictos y retornar false)
+            if (!aIsTop && !aIsBottom && !bIsTop && !bIsBottom) return true;
+
+            return false;
         }
 
         private void OnDrawGizmos()
